@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-md 4">
+        <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="menu.name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Status</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" ng-model="menu.status">
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="saveMenu()">Save</button>
+        </form>
+    </div>
+    <div class="col-md 8">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="(key, menu) in menus track by $index">
+                <th scope="row">{{ $index + 1 }}</th>
+                <td ng-hide="edit">{{ menu.name }}</td>
+                <td>
+                    <input ng-show="edit" type="text" ng-model="menu.name">
+                </td>
+                <td ng-hide="edit">{{ menu.status }}</td>
+                <td>
+                    <input ng-show="edit" type="text" ng-model="menu.status">
+                </td>
+                <td ng-hide="edit">
+                    <button class="btn btn-success" ng-click="editMenu(key)">Edit</button>
+                    <button class="btn btn-danger" ng-click="deleteMenu(key)">Delete</button>
+                </td>
+                <td ng-show="edit">
+                    <button type="submit" class="btn btn-primary" ng-click="saveMenu()">Save</button>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

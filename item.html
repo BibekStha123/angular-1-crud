@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-md 4">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Menu</label>
+                <select class="browser-default custom-select" ng-model="menuName">
+                    <option value="">Select the menu</option>
+                    <option ng-repeat="menu in menus" ng-bind="menu.name" value="{{ menu.name }}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" ng-model="item.name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Status</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" ng-model="item.status">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Price</label>
+                <input type="number" class="form-control" id="exampleInputPassword1" ng-model="item.price">
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="saveItem()">Save</button>
+        </form>
+    </div>
+    <div class="col-md 8">
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Price</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(key, item) in items track by $index">
+                <th scope="row">{{ $index + 1 }}</th>
+                <td>
+                    <span ng-hide="{{ key }}">{{ item.name }}</span>
+                    <input ng-model="item.name" ng-show="{{ key }}" type="text">
+                </td>
+                <td>
+                    <span ng-hide="{{ key }}">{{ item.status }}</span>
+                    <input ng-model="item.status" ng-show="{{ key }}" type="text">
+                </td>
+                <td>
+                    <span ng-hide="{{ key }}">{{ item.price }}</span>
+                    <input ng-model="item.price" ng-show="{{ key }}" type="text">
+                </td>
+                <td>
+                    <button ng-hide="{{ key }}" class="btn btn-success" ng-click="editItem(key)">Edit</button>
+                    <button ng-hide="{{ key }}" class="btn btn-danger" ng-click="deleteItem(key)">Delete</button>
+                    
+                    <button ng-show="{{ key }}" type="submit" class="btn btn-primary" ng-click="updateItem(menu)">Save</button>
+                </td>
+            </tbody>
+            </table>
+    </div>
+</div>
